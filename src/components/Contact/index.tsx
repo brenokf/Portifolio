@@ -1,13 +1,90 @@
 'use client';
 
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import { ContactContainer, ContactContent, ContactForm, ContactIcon, ContactInfo, ContactItem, ContactList, ContactText, Input, InputGroup, SubmitButton, TextArea } from './styles';
-
+import {
+  ContactContainer,
+  ContactContent,
+  ContactInfo,
+  ContactForm,
+  InputGroup,
+  Input,
+  TextArea,
+  SubmitButton,
+  ContactList,
+  ContactItem,
+  ContactIcon,
+  ContactText,
+  SectionTitle,
+  SectionDescription,
+  FormStatus
+} from './styles';
 
 export const Contact = () => {
+  // Estado do formulário
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const [status, setStatus] = useState({
+    type: '',
+    message: '',
+    isSubmitting: false
+  });
+
+  // Manipulador de mudança de inputs
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Manipulador de envio do formulário
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus({ type: 'loading', message: 'Enviando mensagem...', isSubmitting: true });
+
+    try {
+      // Substitua com seu endpoint do Formspree
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        })
+      });
+
+      if (response.ok) {
+        setStatus({
+          type: 'success',
+          message: 'Mensagem enviada com sucesso! Responderei em breve.',
+          isSubmitting: false
+        });
+        // Limpar formulário
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        const error = await response.json();
+        throw new Error(error.error || 'Erro ao enviar mensagem');
+      }
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: error.message || 'Ocorreu um erro. Tente novamente mais tarde.',
+        isSubmitting: false
+      });
+    }
+  };
+
   return (
-    <ContactContainer id="contact" className="section">
+    <ContactContainer id="contact">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -15,7 +92,10 @@ export const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="section-title">Entre em Contato</h2>
+          <SectionTitle>Entre em Contato</SectionTitle>
+          <SectionDescription>
+            Estou disponível para oportunidades de trabalho freelance. Preencha o formulário ou entre em contato diretamente.
+          </SectionDescription>
         </motion.div>
 
         <ContactContent>
@@ -26,10 +106,6 @@ export const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <p style={{ color: 'rgba(255, 255, 255, 0.7)', marginBottom: '2rem' }}>
-                Estou disponível para oportunidades de trabalho freelance. Entre em contato comigo e responderei o mais breve possível.
-              </p>
-
               <ContactList>
                 <ContactItem>
                   <ContactIcon>
@@ -37,8 +113,8 @@ export const Contact = () => {
                   </ContactIcon>
                   <ContactText>
                     <h4>WhatsApp</h4>
-                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
-                      +55 (11) 99999-9999
+                    <a href="https://wa.me/5592995025846" target="_blank" rel="noopener noreferrer">
+                      +55 (92) 99502-5846
                     </a>
                   </ContactText>
                 </ContactItem>
@@ -49,8 +125,8 @@ export const Contact = () => {
                   </ContactIcon>
                   <ContactText>
                     <h4>Email</h4>
-                    <a href="mailto:contato@portfolio.com">
-                      contato@portfolio.com
+                    <a href="mailto:breno-kf@hotmail.com">
+                      breno-kf@hotmail.com
                     </a>
                   </ContactText>
                 </ContactItem>
@@ -61,7 +137,7 @@ export const Contact = () => {
                   </ContactIcon>
                   <ContactText>
                     <h4>Localização</h4>
-                    <p>São Paulo, Brasil</p>
+                    <p>Paraná, Brasil</p>
                   </ContactText>
                 </ContactItem>
               </ContactList>
@@ -74,20 +150,64 @@ export const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <ContactForm>
+            <ContactForm onSubmit={handleSubmit}>
+              {status.message && (
+                <FormStatus
+                  className={status.type}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  {status.message}
+                </FormStatus>
+              )}
+
               <InputGroup>
-                <Input type="text" placeholder="Seu nome" required />
-                <Input type="email" placeholder="Seu email" required />
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Seu nome"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={status.isSubmitting}
+                />
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Seu email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={status.isSubmitting}
+                />
               </InputGroup>
 
-              <Input type="text" placeholder="Assunto" required />
-              <TextArea placeholder="Sua mensagem" required></TextArea>
+              <Input
+                type="text"
+                name="subject"
+                placeholder="Assunto"
+                required
+                value={formData.subject}
+                onChange={handleChange}
+                disabled={status.isSubmitting}
+              />
+
+              <TextArea
+                name="message"
+                placeholder="Sua mensagem"
+                required
+                value={formData.message}
+                onChange={handleChange}
+                disabled={status.isSubmitting}
+              />
 
               <SubmitButton
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                type="submit"
+                whileHover={{ scale: status.isSubmitting ? 1 : 1.05 }}
+                whileTap={{ scale: status.isSubmitting ? 1 : 0.95 }}
+                disabled={status.isSubmitting}
               >
-                Enviar Mensagem
+                {status.isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
               </SubmitButton>
             </ContactForm>
           </motion.div>
