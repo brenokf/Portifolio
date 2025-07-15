@@ -48,7 +48,6 @@ export const Contact = () => {
     setStatus({ type: 'loading', message: 'Enviando mensagem...', isSubmitting: true });
 
     try {
-      // Substitua com seu endpoint do Formspree
       const response = await fetch('https://formspree.io/f/xqalzabk', {
         method: 'POST',
         headers: {
@@ -68,20 +67,28 @@ export const Contact = () => {
           message: 'Mensagem enviada com sucesso! Responderei em breve.',
           isSubmitting: false
         });
-        // Limpar formulário
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        const error = await response.json();
-        throw new Error(error.error || 'Erro ao enviar mensagem');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Erro ao enviar mensagem');
       }
-    } catch (error) {
-      setStatus({
-        type: 'error',
-        message: error.message || 'Ocorreu um erro. Tente novamente mais tarde.',
-        isSubmitting: false
-      });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setStatus({
+          type: 'error',
+          message: error.message || 'Ocorreu um erro. Tente novamente mais tarde.',
+          isSubmitting: false
+        });
+      } else {
+        setStatus({
+          type: 'error',
+          message: 'Ocorreu um erro desconhecido. Tente novamente mais tarde.',
+          isSubmitting: false
+        });
+      }
     }
   };
+
 
   return (
     <ContactContainer id="contact">
