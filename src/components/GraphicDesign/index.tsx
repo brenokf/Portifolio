@@ -68,7 +68,7 @@ export const GraphicDesign = () => {
       title: 'Convite Digital',
       category: 'Convite',
       image: FlyerImage,
-      link: 'https://www.canva.com/design/...',
+      link: 'https://www.canva.com/design/DAGjQpoa6FU/WtZGIFOg_q6IhnGE6fGYZg/edit?utm_content=DAGjQpoa6FU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
     },
   ];
 
