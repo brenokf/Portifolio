@@ -1,6 +1,6 @@
 'use client';
 
-import { FaGithub, FaLinkedinIn, FaDribbble } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import {
   HeroContainer,
   HeroContent,
@@ -57,9 +57,8 @@ export const Hero = () => {
 
             <SocialLinks>
               {[
-                { icon: <FaGithub />, url: 'https://github.com' },
-                { icon: <FaLinkedinIn />, url: 'https://linkedin.com' },
-                { icon: <FaDribbble />, url: 'https://dribbble.com' },
+                { icon: <FaGithub />, url: 'https://github.com/brenokf' },
+                { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/brenomelomendes/' }
               ].map((social, index) => (
                 <a
                   key={index}
