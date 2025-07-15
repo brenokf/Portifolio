@@ -6,9 +6,9 @@ import { FaExternalLinkAlt, FaPalette } from 'react-icons/fa';
 import LogoImage from '@/assets/designers/logo/logo.png';
 import BrandingImage from '@/assets/designers/branding/menu.jpg';
 import PresentationImage from '@/assets/designers/presentation/business.png';
-import InvitationImage from '@/assets/designers/invitation/convite.png';
 import SocialImage from '@/assets/designers/socialnetwork/limpeza.png'
 import FlyerImage from '@/assets/designers/socialmedia/feira.png'
+import ProductImage from '@/assets/designers/product/produto.png'
 
 import {
   GraphicDesignContainer,
@@ -33,22 +33,24 @@ export const GraphicDesign = () => {
   // Dados dos projetos de design
   const designProjects = [
     {
-      title: 'Flyer Promocional',
-      category: 'Flyer',
-      image: LogoImage,
-      link: 'https://www.canva.com/design/...', // Link para seu projeto no Canva
-    },
-    {
-      title: 'Logo Empresarial',
-      category: 'Logo',
+      title: 'Menu de Restaurante',
+      category: 'Cardápio',
       image: BrandingImage,
-      link: 'https://www.canva.com/design/...',
+      link: 'https://www.canva.com/design/DAF6kDR3SZU/xudahtzTzF0H-dXy7yP4RA/edit?utm_content=DAF6kDR3SZU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton', // Link para seu projeto no Canva
     },
     {
-      title: 'Cartão de Visitas',
-      category: 'Branding',
+      title: 'Logos Conquista Rubi',
+      category: 'Logo',
+      image: LogoImage,
+      link: 'https://www.canva.com/design/DAGBJH0mgKA/7P_9i8lsuOwutN-CzrLOFA/edit?utm_content=DAGBJH0mgKA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
+    },
+    // title: 'Flyer Promocional',
+    //   category: 'Flyer',
+    {
+      title: 'Flyer Serviços Digitais',
+      category: 'Flyer',
       image: PresentationImage,
-      link: 'https://www.canva.com/design/...',
+      link: 'https://www.canva.com/design/DAGdI6fUkSI/5ZjOyBCNU-oQ9NMca23kxw/edit?utm_content=DAGdI6fUkSI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
     },
     {
       title: 'Banner para Redes Sociais',
@@ -57,10 +59,10 @@ export const GraphicDesign = () => {
       link: 'https://www.canva.com/design/...',
     },
     {
-      title: 'Apresentação Corporativa',
+      title: 'Apresentação de Produtos',
       category: 'Apresentação',
-      image: InvitationImage,
-      link: 'https://www.canva.com/design/...',
+      image: ProductImage,
+      link: 'https://www.canva.com/design/DAGHBDRLvUQ/cRpcs5ZmeLQJLFqzWRV0hA/edit?utm_content=DAGHBDRLvUQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
     },
     {
       title: 'Convite Digital',
