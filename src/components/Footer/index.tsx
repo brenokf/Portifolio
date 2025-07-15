@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaDribbble, FaArrowUp } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaArrowUp } from 'react-icons/fa';
 import { BackToTop, Copyright, FooterContainer, SocialLink, SocialLinks } from './styles'
 
 export const Footer = () => {
@@ -20,9 +20,8 @@ export const Footer = () => {
       <div className="container">
         <SocialLinks>
           {[
-            { icon: <FaGithub />, url: 'https://github.com' },
-            { icon: <FaLinkedinIn />, url: 'https://linkedin.com' },
-            { icon: <FaDribbble />, url: 'https://dribbble.com' },
+            { icon: <FaGithub />, url: 'https://github.com/brenokf' },
+            { icon: <FaLinkedinIn />, url: 'https://www.linkedin.com/in/brenomelomendes/' }
           ].map((social, index) => (
             <a
               key={index}
