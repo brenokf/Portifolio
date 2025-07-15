@@ -49,7 +49,7 @@ export const Contact = () => {
 
     try {
       // Substitua com seu endpoint do Formspree
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formspree.io/f/xqalzabk', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
