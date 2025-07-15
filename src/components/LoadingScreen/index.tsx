@@ -1,5 +1,3 @@
-// import { useEffect, useState } from 'react';
-
 import {
   AtomContainer,
   AtomCore,
@@ -14,19 +12,12 @@ import {
 } from './styles';
 
 const AtomLoadingScreen = ({ progress }: { progress: number }) => {
-  // const [isClient, setIsClient] = useState(false);
-
-  // useEffect(() => {
-  //   setIsClient(true);
-  // }, []);
-
   return (
     <LoadingContainer>
       <LoadingContent>
         <GridBackground />
 
         <AtomContainer>
-          {/* Núcleo atômico pulsante */}
           <AtomCore
             animate={{
               scale: [1, 1.1, 1],
@@ -39,18 +30,18 @@ const AtomLoadingScreen = ({ progress }: { progress: number }) => {
             }}
           />
 
-          {/* Órbitas em 3D */}
+          {/* Órbitas no mesmo plano com brilho intenso */}
           {[
-            { size: 180, rotationDuration: 8, electronDuration: 3, rotateX: 70, rotateY: 0, color: "#FF2A6D" },
-            { size: 120, rotationDuration: 6, electronDuration: 2.5, rotateX: 0, rotateY: 20, color: "#8A2BE2" },
-            { size: 80, rotationDuration: 10, electronDuration: 4, rotateX: 40, rotateY: 60, color: "#00C4CC" },
+            { size: 180, rotationDuration: 4, electronDuration: 2, color: "#FF2A6D" },
+            { size: 120, rotationDuration: 3, electronDuration: 1.5, color: "#8A2BE2" },
+            { size: 80, rotationDuration: 2, electronDuration: 1, color: "#00C4CC" },
           ].map((orbital, i) => (
             <Orbit3D
               key={i}
               style={{
                 width: `${orbital.size}px`,
                 height: `${orbital.size}px`,
-                transform: `translate(-50%, -50%) rotateX(${orbital.rotateX}deg) rotateY(${orbital.rotateY}deg)`,
+                transform: `translate(-50%, -50%)`,
               }}
               animate={{
                 rotateZ: 360,
@@ -59,20 +50,11 @@ const AtomLoadingScreen = ({ progress }: { progress: number }) => {
                 duration: orbital.rotationDuration,
                 repeat: Infinity,
                 ease: "linear",
-                delay: i * 0.5,
+                delay: i * 0.2,
               }}
             >
               <Electron
-                style={{ backgroundColor: orbital.color, boxShadow: `0 0 10px ${orbital.color}` }}
-                animate={{
-                  rotateX: 360,
-                  rotateY: 360,
-                }}
-                transition={{
-                  duration: orbital.electronDuration,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+                style={{ backgroundColor: orbital.color, boxShadow: `0 0 20px 5px ${orbital.color}` }}
               />
             </Orbit3D>
           ))}
