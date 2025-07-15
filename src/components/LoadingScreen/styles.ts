@@ -65,26 +65,22 @@ export const Orbit3D = styled(motion.div)`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 180px;
-  height: 180px;
-  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  transform-style: preserve-3d;
   transform: translate(-50%, -50%);
 `;
 
 export const Electron = styled(motion.div)`
   position: absolute;
-  top: 0;
-  left: 50%;
+  top: 50%;
+  left: 100%;
   width: 12px;
   height: 12px;
   background: #FF2A6D;
   border-radius: 50%;
-  box-shadow: 0 0 10px #FF2A6D;
-  transform: translateX(-50%) translateY(-50%);
-  transform-style: preserve-3d;
-`;
+  box-shadow: 0 0 20px 5px #FF2A6D;
+  transform: translate(-50%, -50%);
+`
 
 export const LoadingText = styled(motion.div)`
   color: #FFFFFF;
