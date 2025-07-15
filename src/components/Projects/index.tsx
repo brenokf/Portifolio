@@ -13,15 +13,15 @@ const projects = [
   {
     title: 'Coffe Delivery',
     description: 'Plataforma de e-commerce com carrinho, pagamento e dashboard administrativo.',
-    tags: ['React', 'Node.js', 'MongoDB'],
+    tags: ['React', 'TypeScript', 'Vite', 'Styled-components', 'Zod', 'Phosphor'],
     image: CoffeDeliveryImage,
     demo: '#',
     code: '#',
   },
   {
     title: 'Lumière',
-    description: 'Aplicativo para controle financeiro pessoal com gráficos e relatórios.',
-    tags: ['Next.js', 'TypeScript', 'Firebase'],
+    description: 'E-commerce de cosméticos com checkout, carrinho e integração com API.',
+    tags: ['HTML', 'CSS', 'JavaScript'],
     image: LumiereImage,
     demo: '#',
     code: '#',
@@ -29,7 +29,7 @@ const projects = [
   {
     title: 'Restaurant Menu',
     description: 'Aplicativo de cardápio digital para restaurantes com pedidos online.',
-    tags: ['React', 'GraphQL', 'Styled Comp.'],
+    tags: ['Vue', 'Vite', 'CSS', 'TypeScript'],
     image: RestaurantMenuImage,
     demo: '#',
     code: '#',
