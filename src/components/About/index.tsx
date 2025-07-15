@@ -13,7 +13,7 @@ import {
 } from './styles'
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import profile from '../../assets/profile.jpeg'
+import profile from '../../assets/avatar.jpeg'
 export const About = () => {
   return (
     <AboutContainer id="about" className="section">
